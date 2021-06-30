@@ -1,0 +1,47 @@
+FROM php:8.0-fpm
+
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y \
+        git \
+        curl \
+        dpkg-dev \
+        libpng-dev \
+        libjpeg-dev \
+        libonig-dev \
+        libxml2-dev \
+        libpq-dev \
+        libzip-dev \
+        zip \
+        unzip \
+        cron
+
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+
+
+
+RUN docker-php-ext-configure gd \
+  --enable-gd \
+  --with-jpeg
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql pgsql mbstring exif pcntl bcmath gd sockets zip
+
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+RUN sed -i 's/9000/3001/' /usr/local/etc/php-fpm.d/zz-docker.conf
+
+# Set working directory
+WORKDIR /var/www
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 3001
+CMD ["php-fpm"]
+
+#RUN adduser --system --group --shell /bin/sh kirill \
+# && mkdir /home/kirill/bin
+#USER kirill

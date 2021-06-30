@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+BASEDIR=$(dirname $0)
+
+if [[ "$1" == "" ]]
+then
+    echo "Укажите команду"
+    exit 1
+fi
+
+if [[ "$1" == "exec" ]]
+then
+    sudo docker exec -it english-laravel_php sh -c "$2"
+    exit 0
+fi
+
+if [[ "$1" == "execbg" ]]
+then
+    sudo docker exec english-laravel_php sh -c "$2"
+    exit 0
+fi
+
+if [[ "$1" == "start" ]]
+then
+    sudo docker-compose -p english-laravel -f $BASEDIR/docker-compose.yml up  -d  --force-recreate  $2
+    exit 0
+fi
+
+if [[ "$1" == "stop" ]]
+then
+    sudo docker-compose -p english-laravel -f $BASEDIR/docker-compose.yml stop
+    exit 0
+fi
+
+
+if [[ "$1" == "build" ]]
+then
+    sudo docker-compose -p english-laravel -f $BASEDIR/docker-compose.yml build
+    exit 0
+fi
+
+echo "Неверно указана команда"
+exit 1
