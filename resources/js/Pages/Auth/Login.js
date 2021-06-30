@@ -86,8 +86,28 @@ export default function Login({ status, canResetPassword }) {
                     <Button className="ml-4" processing={processing}>
                         Log in
                     </Button>
+
                 </div>
             </form>
+            <div className="flex">
+                <div><a className="btn" href={route('auth.github')}
+                >
+
+                    <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Login with github
+                    </button>
+                </a></div>
+            </div>
+            <div className="flex ">
+                <div><a className="btn" href={route('auth.google')}
+                >
+                    <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Login with google
+                    </button>
+                </a></div>
+            </div>
         </Guest>
     );
 }

@@ -14,3 +14,15 @@ https://laravel.com/docs/8.x/starter-kits
 npm install
 npm run dev
 php artisan migrate
+
+#### Делаем аутентификацию с помощью гугла
+https://laravel.com/docs/8.x/socialite
+./ctrl exec "composer require laravel/socialite"
+
+https://www.positronx.io/laravel-socialite-login-with-facebook-tutorial-with-example/
+https://socialiteproviders.com/Google-Plus/#installation-basic-usage
+
+
+#### Подключаем browser sync (автоматом f5):
+webpack.mix.js: mix.browserSync('localhost');
+http://localhost:3000/
