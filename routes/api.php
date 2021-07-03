@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/game/getWords')->name('api.game.getWords')->uses('App\Http\Controllers\GameController@getWords');
+Route::post('/game/isRight')->name('api.game.isRight')->uses('App\Http\Controllers\GameController@isRight');

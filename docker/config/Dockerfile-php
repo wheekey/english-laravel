@@ -33,13 +33,13 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql pgsql mbstring exif pc
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-RUN sed -i 's/9000/3001/' /usr/local/etc/php-fpm.d/zz-docker.conf
+RUN sed -i 's/9000/3003/' /usr/local/etc/php-fpm.d/zz-docker.conf
 
 # Set working directory
 WORKDIR /var/www
 
 # Expose port 9000 and start php-fpm server
-EXPOSE 3001
+EXPOSE 3003
 CMD ["php-fpm"]
 
 #RUN adduser --system --group --shell /bin/sh kirill \

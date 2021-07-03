@@ -26,3 +26,9 @@ https://socialiteproviders.com/Google-Plus/#installation-basic-usage
 #### Подключаем browser sync (автоматом f5):
 webpack.mix.js: mix.browserSync('localhost');
 http://localhost:3000/
+
+
+
+### GenerateFactory
+./ctrl exec "php artisan make:factory GameFactory --model=Game"
+
