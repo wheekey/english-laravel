@@ -9,7 +9,21 @@ class Game extends Model
 {
     use HasFactory;
 
+    public function splitWords()
+    {
+        $result = [];
+        $words = explode(" ", $this->phrase);
 
+        foreach ($words as $index => $word){
+            $result[] = [
+                'id' => strval($index),
+                'content' => $word
+            ];
+        }
+        shuffle($result);
+
+        return $result;
+    }
 
 
 }

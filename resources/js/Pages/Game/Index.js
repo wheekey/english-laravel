@@ -8,9 +8,8 @@ const Index = () => {
     return (
         <div>
             <h1 className="mb-8 text-3xl font-bold">Falling Bears</h1>
-            <img className="w-48" src="https://www.freevector.com/uploads/vector/preview/14243/FreeVector-Man-Playing-Football.jpg" alt=""/>
 
-            <div className="">
+            <div className="container mx-auto w-1/3 flex flex-col items-center">
                 <DragDropContainer/>
             </div>
         </div>

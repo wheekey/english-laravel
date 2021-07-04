@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use App\Models\Game;
+
 class GameService
 {
 
@@ -15,10 +17,11 @@ class GameService
     {
     }
 
-    public function isRightAnswer(array $words)
+    public function isRightAnswer(int $gameId, array $words): bool
     {
-        foreach($words AS $word){
+        $rrr = $this->game::find($gameId)->phrase;
+        $rrr2 = implode(' ', array_column($words, 'content'));
 
-        }
+        return $this->game::find($gameId)->phrase === implode(' ', array_column($words, 'content'));
     }
 }

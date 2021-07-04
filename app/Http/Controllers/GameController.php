@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Services\GameService;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
@@ -9,7 +10,7 @@ use Inertia\Inertia;
 class GameController extends Controller
 {
 
-    public function __construct(private GameService $gameService)
+    public function __construct(private GameService $gameService, private Game $game)
     {
     }
 
@@ -20,33 +21,21 @@ class GameController extends Controller
 
     public function getWords()
     {
-        /*return json_encode([
-            'words' => [
-                [
-                    'id' => '0',
-                    'content' => 'He'
-                ],
-                [
-                    'id' => '1',
-                    'content' => 'playing'
-                ],
-                [
-                    'id' => '2',
-                    'content' => 'is'
-                ],
-                [
-                    'id' => '3',
-                    'content' => 'football'
-                ],
-                ],
-            'rightWords' => ['He', 'is', 'playing', 'football']
-        ] );*/
+        /* @var $game Game*/
+        $game = $this->game::inRandomOrder()->limit(1)->get()[0];
+
+        return json_encode([
+            'words' => $game->splitWords(),
+            'gameId' => $game->id,
+            'imageUrl' => $game->image
+        ] );
     }
 
     public function isRight()
     {
-
-        return ['isRight' => $this->gameService->isRightAnswer(Request::all())];
+        $params = Request::all();
+        return ['isRight' => $this->gameService->isRightAnswer($params['gameId'], $params['words'])];
+        //return ['isRight' => false];
     }
 
 }

@@ -29,6 +29,7 @@
         "tailwindcss": "^2.1.2"
     },
     "dependencies": {
-        "react-beautiful-dnd": "^13.1.0"
+        "react-beautiful-dnd": "^13.1.0",
+        "react-canvas-confetti": "^1.2.0"
     }
 }
